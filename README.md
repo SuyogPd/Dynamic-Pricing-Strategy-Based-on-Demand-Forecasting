@@ -1,30 +1,86 @@
-Project Title: Dynamic Pricing Strategy Based on Demand Forecasting
-Project Overview:
+Project Title: 🧠 Dynamic Pricing Strategy Based on Demand Forecasting
 
-This project aims to develop a dynamic pricing strategy by leveraging demand forecasting to adjust product prices based on predicted sales. The objective is to optimize pricing decisions in real-time, maximizing revenue while maintaining competitiveness. In its initial phase, the focus is on building a robust demand forecasting model using historical sales data, which will serve as the foundation for future dynamic pricing adjustments.
+📘 Overview
 
-Objectives:
+This project focuses on building a Dynamic Pricing Strategy powered by Demand Forecasting using machine learning.
+It predicts future sales using historical data and dynamically adjusts prices to maximize profit while maintaining competitiveness.
+A hybrid model combining SARIMA (for time-series trends) and LightGBM (for feature-based learning) ensures robust and accurate forecasting.
 
-Demand Forecasting: Build a model to predict future sales using historical data, incorporating features like date, store, item, and previous sales.
+📊 Dataset
 
-Dynamic Pricing: Develop a pricing model that adjusts prices based on predicted demand to maximize revenue.
+Files used:
 
-Revenue Optimization: Optimize pricing decisions by aligning them with forecasted demand, ensuring that prices are competitive and profit-maximizing.
+📂 train.csv → date, store_id, item_id, sales
 
-Real-Time Adjustments: Create a framework that allows prices to be adjusted dynamically based on evolving demand predictions.
+📂 test.csv → id, date, store_id, item_id
 
-Approach:
+📂 sample_submission.csv → id, sales
 
-Data Analysis & Feature Engineering: Use historical sales data (train.csv) and test data (test.csv) to analyze demand patterns and engineer features like lag variables (e.g., lag1, lag7, lag30) to capture trends and seasonality.
+🧩 Synthetic columns price and cost were generated to simulate real-world pricing
 
-Demand Prediction Model: Train a Random Forest Regressor model to forecast future demand, evaluated using metrics like Mean Absolute Error (MAE) and Mean Squared Error (MSE).
+Date format: dd-mm-yyyy
 
-Dynamic Pricing Algorithm: Develop an initial pricing strategy that adjusts prices based on predicted sales. Prices will be increased during high-demand periods and decreased during low-demand periods.
+⚙️ Methodology
+🧹 A) Data Preprocessing
 
-Next Steps:
+Converted date to datetime and extracted temporal features (day, month, week, is_weekend)
 
-The next phase will integrate price-related features, such as competitor prices and price elasticity, into the demand forecasting model. Over time, optimization algorithms and real-time data will be incorporated to enhance the dynamic pricing strategy.
+Created lag features (1, 7, 30 days) and rolling averages (7-day, 30-day)
 
-Conclusion:
+Added synthetic price and cost per item_id to simulate pricing scenarios
 
-This project sets the foundation for a dynamic pricing solution, focusing on accurate demand forecasting to drive optimal pricing decisions, ultimately maximizing revenue and business profitability.
+🤖 B) Model & Techniques
+
+SARIMA: Captures seasonality and long-term temporal patterns in sales data
+
+LightGBM: Models complex nonlinear relationships among features
+
+Hybrid Model: Combines SARIMA’s time-series strengths with LightGBM’s predictive power
+
+Dynamic Pricing Module: Uses price elasticity of demand to adjust prices dynamically for optimal profit
+
+📏 C) Evaluation Metrics
+
+MAE (Mean Absolute Error)
+
+RMSE (Root Mean Squared Error)
+
+MAPE (Mean Absolute Percentage Error)
+
+Profit Gain & Hit Rate – to measure pricing efficiency and profitability impact
+
+📈 Results
+Metric	Value
+MAE	7.50
+RMSE	9.75
+MAPE	16.17%
+
+The hybrid model accurately captured demand fluctuations and seasonality.
+
+Dynamic pricing simulation showed potential profit gains and improved price efficiency.
+
+Visualization of Actual vs Predicted Sales showed strong alignment, confirming model reliability.
+
+💡 Key Insights
+
+Combining time-series forecasting (SARIMA) with machine learning (LightGBM) enhances accuracy.
+
+Dynamic pricing based on demand elasticity can significantly improve revenue.
+
+The model framework is adaptable across industries like retail, finance, and e-commerce.
+
+🚀 Future Enhancements
+
+Integrate competitor pricing, inventory levels, and real-time demand signals
+
+Implement reinforcement learning for autonomous dynamic pricing
+
+Deploy as a web-based dashboard (Power BI / Streamlit) for real-time visualization
+
+🛠️ Technologies Used
+
+🐍 Python
+
+📦 Libraries: Pandas, NumPy, Matplotlib, Seaborn, LightGBM, statsmodels, scikit-learn
+
+💻 Jupyter Notebook for model experimentation and visualization
